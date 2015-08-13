@@ -17,26 +17,24 @@ require 'timeout'
 print "IP Address: "
 ip = gets.chomp
 
-ports=1..65535
-ports.each do |scan|
+p=1..65535
+p.each do |ports|
 
-#we need to find a solution here.
-#getPorts = []
+getPorts = []
 #@getPorts = getPorts
 
 count = 1
 
 begin
-   Timeout::timeout(10){TCPSocket.new("#{ip}", scan)}
+   Timeout::timeout(10){TCPSocket.new("#{ip}", ports)}
    rescue
-      puts "closed:#{scan}"
+      getPorts << ports
    else
       puts "------------------------"
-      puts "open door:#{scan}"
+      puts "open door:#{ports}"
       puts "------------------------"
       sleep 3
    end
-
 end
 
 puts "Done!!!"
