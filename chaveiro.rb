@@ -1,5 +1,15 @@
 #!/usr/bin/ruby
-# Lampiao Sec Team
+#encoding: UTF-8
+
+puts """
+ _______ _     _ _______ _    _ _______ _____  ______  _____ 
+ |       |_____| |_____|  \\  /  |______   |   |_____/ |     |
+ |_____  |     | |     |   \\/   |______ __|__ |    \\_ |_____|
+
+ #Coded by: Elfo - UserX - n3k00n3 
+ #LampiãoSec - Security Research Group
+                                                             
+"""
 
 require 'socket'
 require 'timeout'
@@ -7,29 +17,26 @@ require 'timeout'
 print "IP Address: "
 ip = gets.chomp
 
-ports=1..15000
-ports.each do |scan|
+p=1..65535
+p.each do |ports|
 
-#Ver uma solução Alex
-#pegaPortas = []
-#@pegaPortas = pegaPortas
+getPorts = []
+#@getPorts = getPorts
 
-conta = 1
+count = 1
 
 begin
-   Timeout::timeout(10){TCPSocket.new("#{ip}", scan)}
+   Timeout::timeout(10){TCPSocket.new("#{ip}", ports)}
    rescue
-      puts "closed:#{scan}"
+      getPorts << ports
    else
       puts "------------------------"
-      puts "open door:#{scan}"
+      puts "open door:#{ports}"
       puts "------------------------"
       sleep 3
    end
-
 end
 
-puts "Finalizado!"
+puts "Done!!!"
 
-sleep 1
-puts "LAMPIAOSEC TEAM"
+
